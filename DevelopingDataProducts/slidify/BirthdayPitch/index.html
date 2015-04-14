@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>The Birthday Paradox</title>
+  <meta charset="utf-8">
+  <meta name="description" content="The Birthday Paradox">
+  <meta name="author" content="">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>The Birthday Paradox</h1>
+    <h2>Playing with Probability</h2>
+    <p><br/></p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <article data-timings="">
+    <style>
+em {
+  font-style: italic
+}
+strong {
+  font-weight: bold
+}
+</style>
+
+<h2>Introduction</h2>
+
+<p><br></p>
+
+<p>If 50 people are in a room, what&#39;s the probability that 2 of them
+share a birthday?
+<br>
+<br></p>
+
+<p>Would you believe that it&#39;s <strong>97%</strong>?
+<br>
+<br></p>
+
+<p>The app at <a href="https://data-nerd.shinyapps.io/birthday/">https://data-nerd.shinyapps.io/birthday/</a> will let you play with that
+probability by adjusting the number of birthdays (buckets) and people (objects)
+to find your own interesting results.
+<br>
+<br></p>
+
+<p>This is sometimes called the <strong>Birthday Paradox</strong> or <strong>Birthday Problem</strong>.</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-2" style="background:;">
+  <article data-timings="">
+    <style>
+em {
+  font-style: italic
+}
+</style>
+
+<h2>Background</h2>
+
+<p><br></p>
+
+<p>The math behind the probability calculation can be found on <a href="http://en.wikipedia.org/wiki/Birthday_problem">Wikipedia</a></p>
+
+<p>Probability that 2 people out of <em>n</em> <em>do not</em> share a birthday:</p>
+
+<p>\[\Large \bar{p}({n}) = 1 \times \left( 1 - { 1 \over 365} \right) 
+                          \times \left( 1 - { 2 \over 365} \right)
+                          \times ...
+                          \times \left( 1 - { n \over 365} \right) 
+\]</p>
+
+<p>To get the probability that 2 people <em>do</em> share the same birthday we take the
+compliment of \( \bar{p}({n}) \):</p>
+
+<p>\[\Large {p}({n}) = 1 - \bar{p}({n}) \]</p>
+
+<p>To generalize this formula so that we&#39;re not just talking about people sharing
+birthdays, but any 2 objects occupying the same bucket, we just replace 365
+with <em>b</em>, the number of buckets:</p>
+
+<p>\[\Large \bar{p}({n}) = 1 \times \left( 1 - { 1 \over b } \right) 
+                          \times \left( 1 - { 2 \over b } \right)
+                          \times ...
+                          \times \left( 1 - { n \over b } \right) 
+\]</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>Challenges</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Building this app in R was not without its challenges.</p>
+
+<p>The biggest issue was that the general formula for the probability uses
+365! (facorial), which R does not like.</p>
+
+<pre><code class="r">factorial(365)
+</code></pre>
+
+<pre><code>## Warning: value out of range in &#39;gammafn&#39;
+</code></pre>
+
+<pre><code>## [1] Inf
+</code></pre>
+
+<p>For that reason, the app uses an iterative calculation (a loop) to calculate
+the probability. It&#39;s not R-y, but it&#39;s easy to read and write and it works!</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>Try it yourself</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>How many people would you have to have to have a greater than
+50% chance of finding a shared birthday?
+<br>
+<br></p>
+
+<p><a href="https://data-nerd.shinyapps.io/birthday/">https://data-nerd.shinyapps.io/birthday/</a> can tell you.
+<br>
+<br></p>
+
+<p>Enjoy!</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title=''>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title=''>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Challenges'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Try it yourself'>
+         4
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- MathJax: Fall back to local if CDN offline but local image fonts are not supported (saves >100MB) -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+      }
+    });
+  </script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <!-- <script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script> -->
+  <script>window.MathJax || document.write('<script type="text/x-mathjax-config">MathJax.Hub.Config({"HTML-CSS":{imageFont:null}});<\/script><script src="libraries/widgets/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"><\/script>')
+</script>
+<!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>

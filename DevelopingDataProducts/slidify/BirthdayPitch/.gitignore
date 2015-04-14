@@ -1,0 +1,9 @@
+# Downloaded files
+*.csv
+
+# Temporary working directory
+
+# Directories created by slidify
+libraries/**
+assets/**
+.cache/**
